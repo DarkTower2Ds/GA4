@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Student.h"
 using namespace std;
 
 void main()
@@ -44,9 +45,11 @@ void main()
 	Student *students;
 	students = new Student[numOfStudents];
 
+	Student* studentPtr = students;
 	for (int i = 0; i < numOfStudents; i++)
 	{
-		students[i].setID((i + 1));
+		studentPtr = new Student(i);
+		studentPtr++;
 	}
 
 	int temp = 1;
@@ -54,7 +57,7 @@ void main()
 	{
 		if (temp != numInGroup)
 		{
-			students[i].print();
+			print(students[i]);
 			temp++;
 		}
 		else if ((temp == numInGroup) && (numInGroup == 2))
@@ -77,7 +80,7 @@ void main()
 		{
 			i--;
 
-			cout << "Group Average = " << avgOf2(students[i - 3], students[i - 2], students[i - 1], students[i]) << endl;
+			cout << "Group Average = " << avgOf4(students[i - 3], students[i - 2], students[i - 1], students[i]) << endl;
 
 			temp = 1;
 		}
@@ -105,4 +108,18 @@ double avgOf3(Student a, Student b, Student c)
 double avgOf4(Student a, Student b, Student c, Student d)
 {
 
+}
+
+//friend functions
+void print(Student temp)
+{
+	cout << "Student " << temp.studentID << ": " << "Grade " << temp.studentGrade << endl;
+}
+
+int operator+(const int &first, const Student &next)
+{
+	int totalOfThreeGrades;
+	totalOfThreeGrades = first + next.studentGrade;
+
+	return totalOfThreeGrades;
 }
