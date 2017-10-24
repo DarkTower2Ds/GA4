@@ -11,8 +11,9 @@ public:
 	friend void print(Student temp);
 
     Student();
-    Student(int );
+    Student(int);
     ~Student();
+	void reconstruct(int);
     int operator+(const Student& );
 };
 

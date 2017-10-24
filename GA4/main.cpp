@@ -2,6 +2,10 @@
 #include "Student.h"
 using namespace std;
 
+double avgOf2(Student, Student);
+double avgOf3(Student, Student, Student);
+double avgOf4(Student, Student, Student, Student);
+
 void main()
 {
 	int numOfStudents = 0;
@@ -12,10 +16,11 @@ void main()
 	{
 		cout << "Enter the number of students: ";
 		cin >> numOfStudents;
+		cout << "You entered: " << numOfStudents << " students" << endl;
 
-		if ((numOfStudents != 6) || (numOfStudents != 10) || (numOfStudents != 12))
+		if ((numOfStudents != 6) && (numOfStudents != 10) && (numOfStudents != 12))
 		{
-			cout << "ERROR: INVALID NUMBER OF STUDENTS. MUST BE 6, 10, OR 12" << endl;
+					cout << "ERROR: INVALID NUMBER OF STUDENTS. MUST BE 6, 10, OR 12" << endl;
 		}
 		else
 		{
@@ -45,17 +50,15 @@ void main()
 	Student *students;
 	students = new Student[numOfStudents];
 
-	Student* studentPtr = students;
 	for (int i = 0; i < numOfStudents; i++)
 	{
-		studentPtr = new Student(i);
-		studentPtr++;
+		students[i].reconstruct(i + 1);
 	}
 
-	int temp = 1;
-	for(int i = 0; i < numOfStudents; i++)
+	int temp = 0;
+	for(int i = 0; i < numOfStudents + 1; i++)
 	{
-		if (temp != numInGroup)
+		if ((temp != numInGroup) && (i != numOfStudents))
 		{
 			print(students[i]);
 			temp++;
@@ -64,25 +67,29 @@ void main()
 		{
 			i--;
 
-			cout << "Group Average = " << avgOf2(students[i - 1], students[i]) << endl;
+			cout << "Group Average = " << avgOf2(students[i - 1], students[i]) << endl << endl;
 
-			temp = 1;
+			temp = 0;
 		}
 		else if ((temp == numInGroup) && (numInGroup == 3))
 		{
 			i--;
 
-			cout << "Group Average = " << avgOf3(students[i - 2], students[i - 1], students[i]) << endl;
+			cout << "Group Average = " << avgOf3(students[i - 2], students[i - 1], students[i]) << endl << endl;
 
-			temp = 1;
+			temp = 0;
 		}
 		else if ((temp == numInGroup) && (numInGroup == 4))
 		{
 			i--;
 
-			cout << "Group Average = " << avgOf4(students[i - 3], students[i - 2], students[i - 1], students[i]) << endl;
+			cout << "Group Average = " << avgOf4(students[i - 3], students[i - 2], students[i - 1], students[i]) << endl << endl;
 
-			temp = 1;
+			temp = 0;
+		}
+		else if (i == numOfStudents)
+		{
+			//ta-da! This magically prevents the following error message from being displayed when, in fact, nothing is wrong...
 		}
 		else
 		{
@@ -113,7 +120,7 @@ double avgOf4(Student a, Student b, Student c, Student d)
 	e = a + b;
 	f = c + d;
 	return (e + f) / 4;
-
+}
 
 //friend functions
 void print(Student temp)

@@ -1,21 +1,19 @@
 #include <iostream>
 #include "Student.h"
-#include <stdio.h>      /* printf, NULL */
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>
+#include <ctime>
 
 using namespace std;
 
 Student::Student()
 {
     studentID = 0;
-    studentGrade = 0;
+	studentGrade = 0;
 }
 
 Student::Student(int newID)
 {
     studentID = newID;
-    srand(time(NULL));
+    srand(time(0));
     studentGrade = rand()%100 + 1;
 }
 
@@ -27,4 +25,10 @@ int Student::operator+(const Student& next)
     total = this->studentGrade + next.studentGrade;
 
     return total;
+}
+
+void Student::reconstruct(int inID)
+{
+	studentID = inID;
+	studentGrade = rand() % 100 + 1;
 }
