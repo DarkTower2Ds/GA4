@@ -97,18 +97,23 @@ void main()
 
 double avgOf2(Student a, Student b)
 {
-
+	return (a + b) / 2;
 }
 
 double avgOf3(Student a, Student b, Student c)
 {
-
+	Student d;
+	d = a + b;
+	return (d + c) / 3;
 }
 
 double avgOf4(Student a, Student b, Student c, Student d)
 {
+	Student e, f;
+	e = a + b;
+	f = c + d;
+	return (e + f) / 4;
 
-}
 
 //friend functions
 void print(Student temp)
