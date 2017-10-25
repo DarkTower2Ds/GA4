@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Student.h"
-#include <ctime>
 
 using namespace std;
 
@@ -13,7 +12,6 @@ Student::Student()
 Student::Student(int newID)
 {
     studentID = newID;
-    srand(time(0));
     studentGrade = rand()%100 + 1;
 }
 

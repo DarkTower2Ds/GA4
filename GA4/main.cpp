@@ -1,6 +1,11 @@
 #include <iostream>
+#include <ctime>
 #include "Student.h"
 using namespace std;
+
+//	Alex	33%
+//	Cosmo	33%
+//	Vyda	33%
 
 double avgOf2(Student, Student);
 double avgOf3(Student, Student, Student);
@@ -16,7 +21,6 @@ void main()
 	{
 		cout << "Enter the number of students: ";
 		cin >> numOfStudents;
-		cout << "You entered: " << numOfStudents << " students" << endl;
 
 		if ((numOfStudents != 6) && (numOfStudents != 10) && (numOfStudents != 12))
 		{
@@ -47,6 +51,7 @@ void main()
 		}
 	}
 
+	srand(time(NULL));
 	Student *students;
 	students = new Student[numOfStudents];
 
@@ -109,17 +114,12 @@ double avgOf2(Student a, Student b)
 
 double avgOf3(Student a, Student b, Student c)
 {
-	Student d;
-	d = a + b;
-	return (d + c) / 3;
+	return ((a + b) + c) / 3;
 }
 
 double avgOf4(Student a, Student b, Student c, Student d)
 {
-	Student e, f;
-	e = a + b;
-	f = c + d;
-	return (e + f) / 4;
+	return (((a + b) + c) + d) / 4;
 }
 
 //friend functions
